@@ -25,11 +25,19 @@ public class SpiderTrapModel {
         //generates # of flies depending on level
     }
 
-    public void createLine( ) {
+    public void createLine(int x1, int y1, int x2, int y2) {
+    	Line line = new Line(x1, y1, x2, y2); 
+    	web.add(line);
         //create string depending on mouse drag
     }
     
     public void removeLine(Line line) {
+    	for (int i = 0; i < web.size(); i++) {
+    		if (line == web.get(i)) {
+    			web.remove(i); 
+    			return; 
+    		}
+    	}
         //removes line from web
     }
 
