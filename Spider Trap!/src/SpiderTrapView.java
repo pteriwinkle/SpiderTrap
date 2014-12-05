@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -10,22 +11,18 @@ import javax.swing.JTextField;
 public class SpiderTrapView extends JFrame {
     private static final String PAUSE_COMMAND = "pause", RESUME_COMMAND = "resume",
             NEW_GAME_COMMAND = "new game"; 
-    SpiderTrapController listener; 
     //responsible for drawing - reference to objects?
     //controller passes objects to view
     
-    public SpiderTrapView(int width, int height) {
-        listener = new SpiderTrapController(); 
-        this.setSize(width, height);
+    public SpiderTrapView(SpiderTrapPanel panel) {
+        this.setSize(400, 400);
         this.setLocation(100, 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-        
-        SpiderTrapPanel game = new SpiderTrapPanel(); 
-        mainPanel.add(game, BorderLayout.NORTH); 
-        game.addMouseListener(listener);
+         
+        mainPanel.add(panel, BorderLayout.CENTER); 
         
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 2));
@@ -48,6 +45,8 @@ public class SpiderTrapView extends JFrame {
         
         this.setContentPane(mainPanel);
     }
+    
+    
     
     //paint component for flies, spider - draws them all 
     //paint component: called when controller says view.repaint

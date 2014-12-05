@@ -7,7 +7,7 @@ public class SpiderTrapModel {
     private final int EAT_FLY_SCORE = 5, DESTROY_WEB_SCORE = -10; 
     private Spider player; 
     private ArrayList<Fly> flies = null; //nothing @ beginning
-    private ArrayList<Line> web; //nothing @ beginning
+    private ArrayList<Line> web = new ArrayList<Line>(); //nothing @ beginning
     private int level; 
     private int score; 
     

@@ -5,12 +5,17 @@ import java.awt.event.MouseMotionListener;
 
 public class SpiderTrapController implements MouseListener, MouseMotionListener{
     
-    private SpiderTrapModel model; 
     private SpiderTrapView view; 
+    private SpiderTrapModel model; 
     int x, y; 
     private Line previouslyDrawnLine = null; 
 	//timer in controller: tell model to update positions, give new positions
 	//controller --> model --> view 
+    
+    public SpiderTrapController(SpiderTrapModel model, SpiderTrapView view) {
+        this.model = model; 
+        this.view = view; 
+    }
 
 	@Override
 	public void mouseClicked(MouseEvent e) { 
@@ -46,12 +51,12 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (previouslyDrawnLine == null)
-            return; 
-        model.removeLine(previouslyDrawnLine);
+        if (previouslyDrawnLine != null) {
+            model.removeLine(previouslyDrawnLine);
+        }
         model.createLine(x, y, e.getX(), e.getY());
-        previouslyDrawnLine = model.getWeb().get(model.getWeb().size()); 
-        view.repaint(); 
+        previouslyDrawnLine = model.getWeb().get(model.getWeb().size()-1); 
+        view.repaint();  
         // TODO Auto-generated method stub
     }
 

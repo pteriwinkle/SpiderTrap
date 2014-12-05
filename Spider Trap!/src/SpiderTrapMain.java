@@ -9,9 +9,15 @@ public class SpiderTrapMain {
 //            window.setSize(600, 400);
 //            window.setLocation(100, 200);
 //            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            SpiderTrapView gamePanel = new SpiderTrapView(600, 600);
-            gamePanel.setVisible(true);
-            gamePanel.requestFocus();
+            SpiderTrapModel model = new SpiderTrapModel(); 
+            SpiderTrapPanel panel = new SpiderTrapPanel(model); 
+            SpiderTrapView view = new SpiderTrapView(panel); 
+            SpiderTrapController controller = new SpiderTrapController(model, view);
+            panel.addMouseMotionListener(controller);
+            panel.addMouseListener(controller);
+            view.setVisible(true);
+            view.requestFocus();
+
         }
     
 
