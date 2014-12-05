@@ -11,7 +11,7 @@ public class SpiderTrapMain {
 //            window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             SpiderTrapModel model = new SpiderTrapModel(); 
             SpiderTrapPanel panel = new SpiderTrapPanel(model); 
-            SpiderTrapView view = new SpiderTrapView(panel); 
+            SpiderTrapView view = new SpiderTrapView(panel, model); 
             SpiderTrapController controller = new SpiderTrapController(model, view);
             panel.addMouseMotionListener(controller);
             panel.addMouseListener(controller);

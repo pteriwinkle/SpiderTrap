@@ -1,28 +1,35 @@
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Graphics; 
 
-
-public class SpiderTrapView extends JFrame {
+public class SpiderTrapView extends JFrame implements ActionListener {
     private static final String PAUSE_COMMAND = "pause", RESUME_COMMAND = "resume",
             NEW_GAME_COMMAND = "new game"; 
     //responsible for drawing - reference to objects?
     //controller passes objects to view
+    SpiderTrapPanel panel; 
+    SpiderTrapModel model; 
     
-    public SpiderTrapView(SpiderTrapPanel panel) {
+    public SpiderTrapView(SpiderTrapPanel panel, SpiderTrapModel model) {
+        this.model = model; 
+        
         this.setSize(400, 400);
         this.setLocation(100, 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-         
-        mainPanel.add(panel, BorderLayout.CENTER); 
+        
+        this.panel = panel; 
+        mainPanel.add(this.panel, BorderLayout.CENTER); 
         
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1, 2));
@@ -30,10 +37,13 @@ public class SpiderTrapView extends JFrame {
         JPanel leftBottomPanel = new JPanel(); 
         JButton pauseButton = new JButton(PAUSE_COMMAND);
         leftBottomPanel.add(pauseButton);
+        //pauseButton.addActionListener(this);
         JButton resumeButton = new JButton(RESUME_COMMAND);
         leftBottomPanel.add(resumeButton);
+        //resumeButton.addActionListener(this);
         JButton newGameButton = new JButton(NEW_GAME_COMMAND);
         leftBottomPanel.add(newGameButton);
+        newGameButton.addActionListener(this); 
         bottomPanel.add(leftBottomPanel); 
         
         JPanel rightBottomPanel = new JPanel(); 
@@ -44,6 +54,18 @@ public class SpiderTrapView extends JFrame {
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
         
         this.setContentPane(mainPanel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand(); 
+        System.out.println("YES WE CAN!"); 
+        if (command.equals(NEW_GAME_COMMAND)){
+            for (int i = 0; i < model.getWeb().size(); i++) {
+                model.getWeb().remove(i); 
+            }
+            panel.repaint(); 
+        }
     }
     
     

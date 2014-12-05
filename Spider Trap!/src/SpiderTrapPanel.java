@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Panel;
 
 import javax.swing.JPanel;
 
@@ -20,6 +21,10 @@ import javax.swing.JPanel;
                 endPoint = model.getWeb().get(i).getEndPoint();
                 g.drawLine(startPoint[0], startPoint[1], endPoint[0], endPoint[1]);
             }
+        }
+        
+        public void panelDisplay(Graphics g, String str) {
+            g.drawString(str, Panel.WIDTH/2, Panel.HEIGHT/2);
         }
 
     }
