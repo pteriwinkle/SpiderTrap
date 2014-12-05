@@ -26,8 +26,8 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-	    int x = e.getX(); 
-	    int y = e.getY();
+	    x = e.getX(); 
+	    y = e.getY();
 	}
 
 	@Override
