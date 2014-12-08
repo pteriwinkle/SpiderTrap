@@ -12,6 +12,7 @@ public class SpiderTrapMain {
             SpiderTrapModel model = new SpiderTrapModel(); 
             SpiderTrapPanel panel = new SpiderTrapPanel(model); 
             SpiderTrapView view = new SpiderTrapView(panel, model); 
+            view.setResizable(false);
             SpiderTrapController controller = new SpiderTrapController(model, view);
             panel.addMouseMotionListener(controller);
             panel.addMouseListener(controller);

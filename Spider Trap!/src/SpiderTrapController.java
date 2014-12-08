@@ -42,6 +42,8 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 	    System.out.println(distance); 
 	    if (distance < 10) {
 	        model.removeLine(previouslyDrawnLine);
+	        model.getPlayer().setX(e.getX());   //moves player to small line - so that if player is clicking fast & drags accidentally, spider will still move
+	        model.getPlayer().setY(e.getY());   //just eases the game mechanics - fast paced
 	        view.repaint();
 	    }
 	    previouslyDrawnLine = null; 
