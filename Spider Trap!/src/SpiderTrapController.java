@@ -19,6 +19,9 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) { 
+	    model.getPlayer().setX(e.getX());
+	    model.getPlayer().setY(e.getY());
+	    view.repaint(); 
 		//model.something
 		//view.something
 		
@@ -32,6 +35,15 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+	    if (previouslyDrawnLine == null) 
+	        return; 
+	    double distance = Math.sqrt(Math.pow((previouslyDrawnLine.getStartPoint()[0] - previouslyDrawnLine.getEndPoint()[0]), 2) +
+	            Math.pow((previouslyDrawnLine.getStartPoint()[1] - previouslyDrawnLine.getEndPoint()[1]), 2)); 
+	    System.out.println(distance); 
+	    if (distance < 10) {
+	        model.removeLine(previouslyDrawnLine);
+	        view.repaint();
+	    }
 	    previouslyDrawnLine = null; 
 		// TODO Auto-generated method stub
 		
@@ -50,7 +62,7 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
 	}
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) { 
         if (previouslyDrawnLine != null) {
             model.removeLine(previouslyDrawnLine);
         }

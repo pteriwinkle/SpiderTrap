@@ -1,14 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.Graphics; 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.Graphics; 
 
 public class SpiderTrapView extends JFrame implements ActionListener {
     private static final String PAUSE_COMMAND = "pause", RESUME_COMMAND = "resume",
@@ -45,6 +41,8 @@ public class SpiderTrapView extends JFrame implements ActionListener {
         leftBottomPanel.add(newGameButton);
         newGameButton.addActionListener(this); 
         bottomPanel.add(leftBottomPanel); 
+        JLabel score = new JLabel("Score " + model.getScore());
+        bottomPanel.add(score); 
         
         JPanel rightBottomPanel = new JPanel(); 
         JButton tempButton = new JButton("There will be things here!");
@@ -67,6 +65,7 @@ public class SpiderTrapView extends JFrame implements ActionListener {
             panel.repaint(); 
         }
     }
+
     
     
     

@@ -15,7 +15,7 @@ public class SpiderTrapModel {
     //no reference to view 
     
     public SpiderTrapModel( ) {
-        this.player = new Spider(10, 10, Color.black);  //make spider start in middle of the screen? 
+        this.player = new Spider(100, 100, Color.black);  //make spider start in middle of the screen? 
         level = 1; 
         int score =  0; 
         //set player, level (1)
@@ -47,17 +47,22 @@ public class SpiderTrapModel {
         //removes line from web
     }
 
-    public boolean eatFly(Fly fly) {
-        //removes a fly from flies & makes player slightly bigger
-        return false;
+    public void eatFly(Fly fly) {
+        //removes a fly from flies & makes player slightly bigger (?)
+        for (int i = 0; i<flies.size(); i++) {
+            if (fly == flies.get(i)) {
+                flies.remove(i); 
+                return;
+            }
+        }
     }
 
     public void changeScore(int num) {
-        //increases or decreases score 
+        score += num; 
     }
 
     public void increaseLevel( )  {
-        //++level
+        ++level; 
     }
 
     public void increaseWebLevel( ) {
@@ -70,6 +75,14 @@ public class SpiderTrapModel {
     
     public ArrayList<Line> getWeb() {
         return web; //for removing
+    }
+    
+    public int getScore() { 
+        return score; 
+    }
+    
+    public Spider getPlayer() {
+        return player; 
     }
     
 //getters & setters

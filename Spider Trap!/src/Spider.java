@@ -2,7 +2,7 @@ import java.awt.Color;
 
 
 public class Spider {
-    int radius = 10; 
+    int radius = 20; 
     int x, y; //middle of circle
     Color color = Color.black; 
     
@@ -12,7 +12,7 @@ public class Spider {
     }
 	
     public Spider(int x, int y, Color color) {
-       //Spider(x, y); how to
+       this(x, y); 
        this.color = color; 
     }
 
@@ -30,6 +30,10 @@ public class Spider {
     
     public void setY(int y) {
         this.y = y; 
+    }
+    
+    public int getRadius() {
+        return radius; 
     }
 
 
