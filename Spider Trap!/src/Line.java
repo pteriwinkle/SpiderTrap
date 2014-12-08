@@ -22,5 +22,13 @@ public class Line {
         return endPoint; 
     }
     
+    public void setStartPoint(int[] sp) {
+        startPoint = sp; 
+    }
+    
+    public void setEndPoint(int[] ep) {
+        endPoint = ep; 
+    }
+
     //don't need setters for now
 }

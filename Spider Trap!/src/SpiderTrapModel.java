@@ -31,22 +31,51 @@ public class SpiderTrapModel {
         //generates # of flies depending on level
     }
 
-    public void createLine(int x1, int y1, int x2, int y2) {
+    public void createLine(int x1, int y1, int x2, int y2) {    
     	Line line = new Line(x1, y1, x2, y2); 
+        if (x1 > 750) {
+            int[] newPoint = {800, y1};
+            System.out.println(findLine(line));
+            trimLine(line, newPoint); 
+        }
     	web.add(line);
         //create string depending on mouse drag
     }
     
     public void removeLine(Line line) {
-    	for (int i = 0; i < web.size(); i++) {
-    		if (line == web.get(i)) {
-    			web.remove(i); 
-    			return; 
-    		}
-    	}
+        int i = this.findLine(line); 
+        if ( i == -1)  //safety check
+            return; 
+        web.remove(i);
         //removes line from web
     }
 
+    public void trimLine(Line line, int[] point) { 
+        int i = this.findLine(line); 
+        double halfWayX = (web.get(i).getStartPoint()[0] + web.get(i).getEndPoint()[0])/2;  //THIS SSS //this part checks to see which side of the line to trim
+        double halfWayY = (web.get(i).getStartPoint()[1] + web.get(i).getEndPoint()[1])/2;
+        if (point[0] < halfWayX) //point is left of halfway X point - startPoint
+            web.get(i).setStartPoint(point);
+        else if (point[0] > halfWayX) //point is right of halfway X point - endPoint
+            web.get(i).setEndPoint(point);
+        else if (point[1] > halfWayY) //the line is vertical - go on to y's. I could stick this onto the one before but this increases clarity
+            web.get(i).setStartPoint(point);
+        else if (point[1] < halfWayY)
+            web.get(i).setEndPoint(point);
+        //I HOPE THIS WORKS PRAY 2 ANUBIS
+        //trims end of a line - use twice to trim both ends
+    }
+    
+    public int findLine(Line line) {
+        for (int i = 0; i < web.size(); i++) {
+            if (line == web.get(i)) {
+                return i; 
+            }
+        }
+        return -1; 
+        //returns index of line in web
+    }
+    
     public void eatFly(Fly fly) {
         //removes a fly from flies & makes player slightly bigger (?)
         for (int i = 0; i<flies.size(); i++) {

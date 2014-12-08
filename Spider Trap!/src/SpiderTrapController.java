@@ -68,7 +68,12 @@ public class SpiderTrapController implements MouseListener, MouseMotionListener{
         if (previouslyDrawnLine != null) {
             model.removeLine(previouslyDrawnLine);
         }
-        model.createLine(x, y, e.getX(), e.getY());
+        if (x > e.getX() || (x == e.getX() && e.getY() < y)) { //this makes it so that startPoint is always on the left, OR up (if line is vertical) - just so trimPoint in model is 1000x easier to code
+           model.createLine(x, y, e.getX(), e.getY());
+        }
+        else if (x < e.getX() || (x == e.getX() && e.getY() > y)) {
+            model.createLine(e.getX(), e.getY(), x, y); //THIS
+        }
         previouslyDrawnLine = model.getWeb().get(model.getWeb().size()-1); 
         view.repaint();  
         // TODO Auto-generated method stub

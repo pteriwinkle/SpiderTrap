@@ -35,6 +35,10 @@ public class Spider {
     public int getRadius() {
         return radius; 
     }
+    
+    public Color getColor() {
+        return color; 
+    }
 
 
 }

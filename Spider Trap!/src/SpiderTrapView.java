@@ -17,7 +17,7 @@ public class SpiderTrapView extends JFrame implements ActionListener {
     public SpiderTrapView(SpiderTrapPanel panel, SpiderTrapModel model) {
         this.model = model; 
         
-        this.setSize(600, 600); //HOW TO MAKE THIS A CONSTANT ACCESIBLE IN ANY CLASS
+        this.setSize(800, 800); //HOW TO MAKE THIS A CONSTANT ACCESIBLE IN ANY CLASS
         this.setLocation(100, 100);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
